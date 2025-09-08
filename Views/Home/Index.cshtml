@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container py-5">
+    <div class="row g-4">
+
+        <!-- Students Section -->
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-3">👨‍🎓 Students</h2>
+                    <p class="card-text">Manage student records, view lists, and add new students.</p>
+                    <a asp-controller="BStudents" asp-action="List" class="btn btn-primary m-2">📋 View Students</a>
+                    <a asp-controller="BStudents" asp-action="Add" class="btn btn-success m-2">➕ Add Student</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-3">📅 Events</h2>
+                    <p class="card-text">Check the calendar of upcoming events or create a new one.</p>
+                    <a asp-controller="Events" asp-action="Calendar" class="btn btn-primary m-2">📅 View Calendar</a>
+                    <a asp-controller="Events" asp-action="Add" class="btn btn-success m-2">➕ Add Event</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model WebApplication1.Models.AddBStudentViewModel
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4 rounded-4">
+                <h2 class="text-center text-primary mb-4">Add New Student</h2>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-bold"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Course" class="form-label fw-bold"></label>
+                        <input asp-for="Course" class="form-control" placeholder="Enter course" />
+                        <span asp-validation-for="Course" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input asp-for="Enrolled" class="form-check-input" id="Enrolled" />
+                        <label asp-for="Enrolled" class="form-check-label"></label>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg rounded-pill">
+                            Save Student
+                        </button>
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary btn-lg rounded-pill">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

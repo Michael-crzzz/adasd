@@ -1,0 +1,70 @@
+﻿@model WebApplication1.Models.Entities.BStudent
+@{
+    ViewData["Title"] = "Edit Student";
+}
+
+@if (Model is null)
+{
+    <div class="container mt-5">
+        <div class="alert alert-danger text-center rounded-3 shadow-sm">
+            <h4>No Student was found with this ID</h4>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg p-4 rounded-4">
+                    <h2 class="text-center text-warning mb-4">Edit Student</h2>
+
+                    <form method="post">
+                        <div class="mb-3">
+                            <label asp-for="Id" class="form-label fw-bold"></label>
+                            <input asp-for="Id" class="form-control" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-bold"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Course" class="form-label fw-bold"></label>
+                            <input asp-for="Course" class="form-control" placeholder="Enter course" />
+                            <span asp-validation-for="Course" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="Enrolled" class="form-check-input" id="Enrolled" />
+                            <label asp-for="Enrolled" class="form-check-label"></label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-warning btn-lg rounded-pill">
+                                Update Student
+                            </button>
+                            <a asp-action="List" class="btn btn-outline-secondary btn-lg rounded-pill" asp-controller="BStudents">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+}

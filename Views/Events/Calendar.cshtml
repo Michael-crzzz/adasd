@@ -1,0 +1,58 @@
+﻿@model List<WebApplication1.Models.EventEntity.Event>
+
+@{
+    ViewData["Title"] = "Calendar";
+}
+
+<h1 class="mb-4 text-center">📅 Events Calendar</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Event Calendar</h2>
+    <div>
+        <a asp-controller="Events" asp-action="Add" class="btn btn-success">➕ Add Event</a>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">🏠 Back to Home</a>
+    </div>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+<div id="calendar"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+                events: [
+        @for (int i = 0; i < Model.Count; i++)
+        {
+                var ev = Model[i];
+                <text>{
+                    title: '@ev.Title',
+                    start: '@ev.StartDate.ToString("yyyy-MM-ddTHH:mm:ss")',
+                    end: '@(ev.EndDate?.ToString("yyyy-MM-ddTHH:mm:ss") ?? ev.StartDate.ToString("yyyy-MM-ddTHH:mm:ss"))',
+                    url: '@Url.Action("Edit", "Events", new { id = ev.Id })'
+                }@(i < Model.Count - 1 ? "," : "")
+                </text>
+        }
+    ]
+
+        });
+
+        calendar.render();
+    });
+</script>
+
+<style>
+    #calendar {
+        max-width: 90%;
+        margin: 20px auto;
+        background: #fff;
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    }
+</style>
+
